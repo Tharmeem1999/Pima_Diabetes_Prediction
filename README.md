@@ -62,7 +62,6 @@ The system was built by training a machine learning model, wrapping it in a Flas
 ├── requirements.txt 					# Python dependencies
 ├── Pima_Diabetes.ipynb 				# Model training notebook
 ├── diabetes.csv                        # The original dataset
-├── Pima_Diabetes.ipynb                 # Jupyter Notebook (EDA, Preprocessing, Model Training)
 ├── README.md                           # Project Documentation
 └── templates └── index.html 			# Frontend user interface
 ```
