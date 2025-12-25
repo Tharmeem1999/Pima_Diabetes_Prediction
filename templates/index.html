@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction AI</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff4b4b; /* Streamlit Red color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff3333;
+        }
+
+        /* Result Styles */
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .error {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏥 Diabetes Predictor</h1>
+        <p style="text-align:center; color:#666; margin-bottom: 20px;">Enter patient details to predict diabetes probability.</p>
+        
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="form-grid">
+                <div>
+                    <label>Pregnancies</label>
+                    <input type="number" name="pregnancies" required placeholder="e.g. 0">
+                </div>
+                <div>
+                    <label>Glucose Level</label>
+                    <input type="number" name="glucose" required placeholder="e.g. 120">
+                </div>
+
+                <div>
+                    <label>Blood Pressure</label>
+                    <input type="number" name="bloodpressure" required placeholder="e.g. 70">
+                </div>
+                <div>
+                    <label>Skin Thickness</label>
+                    <input type="number" name="skinthickness" required placeholder="e.g. 20">
+                </div>
+
+                <div>
+                    <label>Insulin</label>
+                    <input type="number" name="insulin" required placeholder="e.g. 79">
+                </div>
+                <div>
+                    <label>BMI</label>
+                    <input type="number" step="0.1" name="bmi" required placeholder="e.g. 32.0">
+                </div>
+
+                <div>
+                    <label>Diabetes Pedigree Function</label>
+                    <input type="number" step="0.001" name="dpf" required placeholder="e.g. 0.47">
+                </div>
+                <div>
+                    <label>Age</label>
+                    <input type="number" name="age" required placeholder="e.g. 33">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Predict Result</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result-box {{ result_class }}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
