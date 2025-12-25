@@ -1,16 +1,60 @@
-# Pima Indians Diabetes Prediction
+# 🏥 Diabetes Prediction AI
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Random%20Forest-green)
-![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red)
+A machine learning web application that predicts the likelihood of diabetes in patients based on medical diagnostic measurements. This project uses a **Random Forest Classifier** trained on the Pima Indians Diabetes Database and is deployed as a live web application using **Flask** and **Docker**.
 
-## Project Overview
+**🔴 Live Demo:** [Link](https://pima-diabetes-prediction.onrender.com)
 
-This project is a Machine Learning application designed to predict whether a female patient has diabetes based on diagnostic measurements. The model is trained on the **Pima Indians Diabetes Database** and deployed using a **Streamlit** web application for interactive use.
+## 📝 Project Overview
 
-The project focuses heavily on **Data Quality**, implementing advanced imputation techniques for missing values (e.g., Insulin, SkinThickness) and careful outlier handling to ensure robust predictions.
+Early detection of diabetes can significantly improve patient outcomes. This application allows users to input specific health metrics (such as glucose level, BMI, and age) to receive an instant prediction on whether they are likely to be diabetic.
 
-## 📂 Repository Structure
+The system was built by training a machine learning model, wrapping it in a Flask API, containerizing it with Docker, and deploying it to the cloud via a CI/CD pipeline.
+
+## 🛠️ Tech Stack
+
+* **Machine Learning:** Python, Scikit-Learn, Pandas, NumPy
+* **Model:** Random Forest Classifier
+* **Web Framework:** Flask
+* **Containerization:** Docker
+* **Deployment:** Render (PaaS) with CI/CD
+* **Frontend:** HTML5, CSS3
+
+## 📊 Model Details
+
+* **Dataset:** [Pima Indians Diabetes Database](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
+* **Algorithm:** Random Forest Classifier
+* **Training:** The model was trained on 8 diagnostic features including pregnancies, glucose, blood pressure, skin thickness, insulin, BMI, diabetes pedigree function, and age.
+* **Preprocessing:** Data cleaning and feature selection were performed to optimize model accuracy. No standard scaling was applied as Random Forest is a tree-based algorithm invariant to feature scaling.
+
+## 🚀 Features
+
+* **Real-time Prediction:** Users get instant results after submitting the form.
+* **User-Friendly Interface:** Clean, responsive design for easy data entry.
+* **Robust Backend:** Powered by Flask and Gunicorn for reliable performance.
+* **Production Ready:** Dockerized environment ensures consistent behavior across different platforms.
+
+## 🏃‍♂️ How to Run Locally
+
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
+    cd your-repo-name
+    ```
+
+2.  **Build the Docker Image**
+    ```bash
+    docker build -t diabetes-app .
+    ```
+
+3.  **Run the Container**
+    ```bash
+    docker run -p 5000:5000 diabetes-app
+    ```
+
+4.  **Access the App**
+    Open your browser and go to `http://localhost:5000`
+
+## 📂 Project Structure
 
 ```text
 ├── diabetes.csv                       # The original dataset
@@ -18,88 +62,7 @@ The project focuses heavily on **Data Quality**, implementing advanced imputatio
 ├── diabetes_app.py                    # Streamlit Web Application
 ├── Pima_Indians_Diabetes_model.pickle # Trained Machine Learning Model
 └── README.md                          # Project Documentation
-
 ```
+## 📷 Screenshot
 
-## Dataset Description
-
-The dataset comes from the kaggle. [Link](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
-
-Rows: 768
-
-Columns: 9
-
-Target: Outcome (0 = Non-Diabetic, 1 = Diabetic)
-
-| Feature                   | Description                                                                                 |
-|---------------------------|---------------------------------------------------------------------------------------------|
-| Pregnancies               | Number of times pregnant                                                                   |
-| Glucose                   | Plasma glucose concentration 2 hours into an oral glucose tolerance test                  |
-| BloodPressure             | Diastolic blood pressure (mm Hg)                                                           |
-| SkinThickness             | Triceps skin fold thickness (mm)                                                           |
-| Insulin                   | 2-hour serum insulin (mu U/ml)                                                             |
-| BMI                       | Body mass index (weight in kg/(height in m)^2)                                            |
-| DiabetesPedigreeFunction  | Function scoring likelihood of diabetes based on family history                           |
-| Age                       | Age (years)                                                                               |
-
-## Methodology
-
-### 1. **Data Cleaning & Preprocessing**
-
-A major challenge with this dataset is the presence of invalid "0" values in biological columns (Glucose, Blood Pressure, Skin Thickness, Insulin, BMI).
-
- * **Problem**: Biological stats cannot be zero. These represented missing data.
-
- * **Solution** (Group-Aware Imputation): Instead of using a global mean/median, missing values were filled using the median of the specific Outcome group.
-
-     * **Example**: Missing Insulin for a diabetic patient was filled with the median Insulin of other diabetic patients (~169.5), rather than the healthy median (~102.5).
-
-### 2. **Outlier Removal**
-   
-Statistical outliers were handled using the IQR (Interquartile Range) Method and domain knowledge:
-
- * **SkinThickness**: Removed records < 14.5 (for Diabetics) and > 42.5 (for Non-Diabetics) to reduce noise.
- 
- * **Extreme Values**: Removed physically impossible outliers (e.g., SkinThickness = 99).
- 
- * **Pregnancies**: High pregnancy counts (e.g., 14-17) were kept as they were found to be valid high-risk indicators for diabetes in this specific dataset.
-
-### 3. Model Training
-
-* **Algorithm**: Random Forest Classifier
-
-* **Reasoning**: Random Forest was chosen for its robustness to overfitting on small datasets and its ability to handle non-linear relationships between features (like Age and Pregnancies).
-
-## How to Run the Project
-
-Prerequisites
-Make sure you have Python installed. Install the required libraries:
-
-   ```bash
-   pip install pandas numpy seaborn matplotlib scikit-learn streamlit
-   ```
-
-**Running the Web App**
-
-To use the interactive prediction interface:
-
-1. Open your terminal/command prompt.
-
-2. Navigate to the project folder.
-
-3. Run the following command:
-   ```bash
-   streamlit run diabetes_app.py
-   ```
-
-4. The app will open in your browser at **`http://localhost:8501`**
-
-**Training the Model (Optional)**
-
-If you want to retrain the model or see the analysis:
-
-1. Open **`Pima_Diabetes.ipynb`** in Jupyter Notebook or VS Code.
-
-2. Run all cells.
-
-3. This will generate a new **`Pima_Indians_Diabetes_model.pickle`** file.
+<img width="832" height="695" alt="Image" src="https://github.com/user-attachments/assets/189e6cf8-f08d-47c3-af87-b28628765029" />
