@@ -67,4 +67,4 @@ The system was built by training a machine learning model, wrapping it in a Flas
 ```
 ## ⚪ Screenshot
 
-<img width="832" height="695" alt="Image" src="https://github.com/user-attachments/assets/189e6cf8-f08d-47c3-af87-b28628765029" />
+<img width="832" height="695" alt="Image" src="https://github.com/user-attachments/assets/1222702b-34c0-4ec3-bf1f-de548a6770ac" />
