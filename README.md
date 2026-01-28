@@ -1,4 +1,4 @@
-# 🏥 Diabetes Prediction AI
+# 🏥 Diabetes Prediction
 
 A machine learning web application that predicts the likelihood of diabetes in patients based on medical diagnostic measurements. This project uses a **Random Forest Classifier** trained on the Pima Indians Diabetes Database and is deployed as a live web application using **Flask** and **Docker**.
 
