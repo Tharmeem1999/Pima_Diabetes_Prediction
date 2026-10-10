@@ -56,14 +56,15 @@ The system was built by training a machine learning model, wrapping it in a Flas
 ## 📂 Project Structure
 
 ```text
-├── app.py 								# Flask application entry point
-├── Pima_Indians_Diabetes_model.pickle 	# Serialized Machine Learning Model
-├── Dockerfile 							# Docker configuration
-├── requirements.txt 					# Python dependencies
-├── Pima_Diabetes.ipynb 				# Model training notebook
+├── app.py                              # Flask application entry point
+├── Pima_Indians_Diabetes_model.pickle  # Serialized Machine Learning Model
+├── Dockerfile                          # Docker configuration
+├── requirements.txt                    # Python dependencies
+├── Pima_Diabetes.ipynb                 # Model training notebook
 ├── diabetes.csv                        # The original dataset
 ├── README.md                           # Project Documentation
-└── templates └── index.html 			# Frontend user interface
+└── templates 
+        └── index.html                  # Frontend user interface
 ```
 ## ⚪ Screenshot
 
